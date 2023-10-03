@@ -2,6 +2,38 @@
 
 {% block content %}
 
+
+<div style="height: 20rem; border-radius: 1rem; margin: 2rem; text-align: center;">
+    <!-- <h1 style="font-family: 'Lobster', cursive;"> -->
+    <h1 class="pragmatic_logo">
+        Hello World List!
+    </h1>
+
+    <form action="/account/hello_world/" method="post">
+        {% csrf_token %}    <!-- 장고에서 제공하는 보안 기능 중 하나. 미기재 시 post 실행 불가 -->
+        <div>
+            <input type="text" name="hello_world_input">
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="POST">  <!-- bootstrap에서 제공하는 클래스-->
+        </div>
+        
+    </form>
+    {% if hello_world_list %}
+        {% for hello_world in hello_world_list %}
+        <h4>
+            {{ hello_world.text }}
+        </h4>
+        {% endfor %}
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
+
+
+<!-- 
     <style>
         .testing {
             background-color: white;
@@ -21,6 +53,4 @@
     <div class="testing" style="display: inline-block;">inline-block</div>
     <div class="testing">default</div>
 
-</div>
-
-{% endblock %}
+</div> -->
